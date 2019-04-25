@@ -1,0 +1,24 @@
+.PostItem {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 8px #ccc;
+    margin: 5px 0;
+}
+.PostImg{
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+.PostTextBlock div{
+    display: flex;
+}
+.PostTextBlock div p {
+    margin-right: 5px;
+}
+.TitleText {
+    margin-top: 40px;
+}

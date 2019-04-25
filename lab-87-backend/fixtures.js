@@ -24,18 +24,18 @@ const run = async () => {
 
     const post = await Post.create(
         {
-            title: "Post 1",
+            title: "The Nature of Things | WYPR",
             description: "Some description",
             dateTime: new Date().toISOString(),
             user: user[0]._id,
-            image: 'imgPost1'
+            image: 'imgPost1.png'
         },
         {
-            title: "Post 2",
+            title: "Искусственная трава Nature D3 для футбола",
             description: "Some description 2",
             dateTime: new Date().toISOString(),
             user: user[1]._id,
-            image: 'imgPost2'
+            image: 'imgPost2.jpg'
         }
     );
 
