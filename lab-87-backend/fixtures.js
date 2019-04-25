@@ -24,12 +24,18 @@ const run = async () => {
 
     const post = await Post.create(
         {
-            title: "Post 1", description: "Some description",
-            dateTime: new Date().toISOString(), user: user[0]._id
+            title: "Post 1",
+            description: "Some description",
+            dateTime: new Date().toISOString(),
+            user: user[0]._id,
+            image: 'imgPost1'
         },
         {
-            title: "Post 2", description: "Some description 2",
-            dateTime: new Date().toISOString(), user: user[1]._id
+            title: "Post 2",
+            description: "Some description 2",
+            dateTime: new Date().toISOString(),
+            user: user[1]._id,
+            image: 'imgPost2'
         }
     );
 

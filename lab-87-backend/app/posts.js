@@ -1,6 +1,20 @@
 const express = require('express');
 const PostSchema = require('../models/Posts');
 const auth = require('../middleware/auth');
+const config = require('../config');
+const multer = require('multer');
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, config.uploadPath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, nanoid() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({storage});
 
 const router = express.Router();
 
@@ -22,10 +36,16 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', auth, (req, res) => {
+router.post('/', [auth, upload.single('image')], (req, res) => {
     if (req.body.description || req.body.image){
 
-        const post = new PostSchema(req.body);
+        const postData = req.body;
+
+        if (req.file) {
+            postData.image = req.file.filename;
+        }
+
+        const post = new PostSchema(postData);
         post.user = req.user._id;
         post.dateTime = new Date().toISOString();
 
