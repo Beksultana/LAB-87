@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const config = require('./config');
-const nanoid = require('nanoid');
 
 const Post = require('./models/Posts');
 const User = require('./models/User');
@@ -19,8 +18,8 @@ const run = async () => {
 
 
     const user = await User.create(
-        {username: 'User1', password: '123', token: nanoid()},
-        {username: 'User2', password: '123', token: nanoid()}
+        {username: 'User1', password: '123', token: 1},
+        {username: 'User2', password: '123', token: 2}
     );
 
     const post = await Post.create(
