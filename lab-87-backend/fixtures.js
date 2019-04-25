@@ -18,8 +18,8 @@ const run = async () => {
 
 
     const user = await User.create(
-        {username: 'User1', password: '123', token: 1},
-        {username: 'User2', password: '123', token: 2}
+        {username: 'Sultan', password: '123', token: 1},
+        {username: 'Azamat', password: '123', token: 2}
     );
 
     const post = await Post.create(
@@ -40,9 +40,9 @@ const run = async () => {
     );
 
     await Comment.create(
-        {posts: post[0]._id, user: user[0]._id, text: "Some text 1"},
-        {posts: post[0]._id, user: user[1]._id, text: "Some text 2"},
-        {posts: post[1]._id, user: user[0]._id, text: "Some text 1"}
+        {posts: post[0]._id, user: user[0]._id, text: "Lorem ipsum input some text go soy good!"},
+        {posts: post[0]._id, user: user[1]._id, text: "javaScript java pyton next go"},
+        {posts: post[1]._id, user: user[0]._id, text: "Some text and html hs and code text."}
     );
     await connection.close();
 };

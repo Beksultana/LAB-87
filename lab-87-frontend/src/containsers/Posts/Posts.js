@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import {fetchPosts} from "../../store/actions/postsActions";
 import {connect} from "react-redux";
-import {CardBody} from "reactstrap";
 import './Posts.css';
 import {Link} from "react-router-dom";
+import Moment from "react-moment";
 
 class Posts extends Component {
 
@@ -12,7 +12,6 @@ class Posts extends Component {
     }
 
     render() {
-        console.log(this.props.posts);
         const posts = this.props.posts.map(postItem => {
            return (
                <div className="Post" key={postItem._id}>
@@ -24,8 +23,8 @@ class Posts extends Component {
                        </div>
                        <div className='PostTextBlock'>
                            <div>
-                               <p>{postItem.dateTime} by</p>
-                               <p><strong>{postItem.user.username}</strong></p>
+                               <Moment format="DD.MM.YYYY HH:mm:ss">{postItem.dateTime}</Moment>
+                               <p> <strong> by { postItem.user.username}</strong></p>
                            </div>
                            <Link to={"/post/" + postItem._id}><h2>{postItem.title}</h2></Link>
                        </div>
@@ -36,7 +35,7 @@ class Posts extends Component {
         return (
             <Fragment>
                 <div className="TitleText">
-                    <h2><strong>Posts</strong></h2>
+                    <h2 style={{textAlign: "center"}}><strong>Posts</strong></h2>
                     <hr/>
                 </div>
                 {posts}

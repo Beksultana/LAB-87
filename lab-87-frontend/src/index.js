@@ -10,13 +10,17 @@ import {createBrowserHistory} from 'history';
 import {connectRouter, routerMiddleware, ConnectedRouter} from 'connected-react-router';
 import * as serviceWorker from './serviceWorker';
 
-import postsRducer from './store/reducers/postsReducer';
+import postsReducer from './store/reducers/postsReducer';
+import postReducer from './store/reducers/postReducer';
+import commentsReducer from './store/reducers/commentsReducer';
 
 const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     router: connectRouter(history),
-    posts: postsRducer,
+    posts: postsReducer,
+    post: postReducer,
+    comments: commentsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

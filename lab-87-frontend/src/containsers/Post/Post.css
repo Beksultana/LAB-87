@@ -1,0 +1,17 @@
+.Comment {
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 8px #ccc;
+    margin: 2px 0;
+    padding: 10px;
+}
+.Comment p {
+    margin: 0 10px;
+}
+.PostBlock {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
