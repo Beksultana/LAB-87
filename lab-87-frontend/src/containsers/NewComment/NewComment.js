@@ -3,10 +3,16 @@ import {Button, Col, Form, FormGroup, Input, Row} from "reactstrap";
 import {connect} from "react-redux";
 import {createComments} from "../../store/actions/postAction";
 import './NewComments.css';
+import {fetchComments} from "../../store/actions/commentAction";
 
 class NewComment extends Component {
 
+    componentDidMount() {
+
+    }
+
     state = {
+        posts: this.props.post,
         text: '',
     };
 
@@ -17,11 +23,8 @@ class NewComment extends Component {
     };
     submitFormHandler = event => {
         event.preventDefault();
-        const commentData = {
-            posts: this.props.post,
-            text: this.state.text
-        };
-        this.props.createComment(commentData);
+        this.props.createComment({...this.state});
+        this.props.fetchComment(this.props.post)
     };
 
     render() {
@@ -54,7 +57,8 @@ class NewComment extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-   createComment: (commentData) => dispatch(createComments(commentData))
+   createComment: (commentData) => dispatch(createComments(commentData)),
+    fetchComment: id => dispatch(fetchComments(id))
 });
 
 export default connect(null, mapDispatchToProps)(NewComment);

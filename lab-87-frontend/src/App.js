@@ -8,14 +8,18 @@ import Register from "./containsers/Register/Register";
 import Login from "./containsers/Login/Login";
 import NewPost from "./containsers/NewPost/NewPost";
 import {connect} from "react-redux";
+import {NotificationContainer} from "react-notifications";
+import {logoutUser} from "./store/actions/userAction";
 
 
 class App extends Component {
     render() {
         return (
             <Fragment>
+                <NotificationContainer/>
                 <header>
-                    <Toolbar user={this.props.user}/>
+                    <Toolbar user={this.props.user}
+                             logout={this.props.logoutUser}/>
                 </header>
                 <Container>
                     <Switch>
@@ -35,5 +39,8 @@ class App extends Component {
 const mapStateToProps = state => ({
     user: state.users.user
 });
+const mapDispatchToProps = dispatch => ({
+    logoutUser: () => dispatch(logoutUser())
+});
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

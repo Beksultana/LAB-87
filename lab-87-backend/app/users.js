@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
     console.log(user);
 });
 
-router.post('/session', async (req, res) => {
+router.post('/sessions', async (req, res) => {
    const user = await UserSchema.findOne({username: req.body.username});
     if (!user) {
         return res.status(400).send({error: 'Username not found'});
@@ -30,6 +30,29 @@ router.post('/session', async (req, res) => {
     await user.save();
 
     return res.send({message: "Login success", user});
+});
+
+router.delete('/sessions', async (req, res) => {
+    const token = req.get("Authorization");
+    const success = {message: 'Logged out'};
+    if (!token) {
+        return res.send(success);
+    }
+
+    const user = await UserSchema.findOne({token});
+    if (!user) {
+        return res.send(success);
+    }
+
+    user.generateToken();
+    await user.save();
+    return res.send(success)
+});
+
+router.put('/', auth, async (req, res) => {
+    req.user.password = req.body.password;
+    await req.user.save();
+    res.sendStatus(200);
 });
 
 module.exports = router;
