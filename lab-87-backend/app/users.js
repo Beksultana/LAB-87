@@ -10,12 +10,12 @@ router.post('/', (req, res) => {
     user.generateToken();
 
    user.save()
-       .then(user => res.send(user))
+       .then(user => res.send({message: "User register" , user}))
        .catch(error => res.status(400).send(error));
     console.log(user);
 });
 
-router.post('/session', auth, async (req, res) => {
+router.post('/session', async (req, res) => {
    const user = await UserSchema.findOne({username: req.body.username});
     if (!user) {
         return res.status(400).send({error: 'Username not found'});

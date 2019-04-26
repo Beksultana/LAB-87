@@ -20,7 +20,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await PostSchema.find().populate('user');
+        const posts = await PostSchema.find()
+            .populate('user')
+            .sort({dateTime: -1});
         return res.send(posts);
     }catch (error) {
         return res.send(error)

@@ -36,6 +36,12 @@ const run = async () => {
             dateTime: new Date().toISOString(),
             user: user[1]._id,
             image: 'imgPost2.jpg'
+        },
+        {
+            title: "Искусственная трава Nature D3 для футбола",
+            description: "Some description 2",
+            dateTime: new Date().toISOString(),
+            user: user[1]._id
         }
     );
 

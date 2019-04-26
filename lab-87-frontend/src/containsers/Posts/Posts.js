@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import './Posts.css';
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
+import PostsThumbnail from "../../components/PostsThumblnile/PostsThumbnile";
 
 class Posts extends Component {
 
@@ -17,9 +18,11 @@ class Posts extends Component {
                <div className="Post" key={postItem._id}>
                    <div className='PostItem'>
                        <div>
+                           {postItem.image ?
                            <img className='PostImg'
                                 src={'http://localhost:7000/uploads/' + postItem.image}
                                 alt={postItem.image}/>
+                           : <PostsThumbnail/>}
                        </div>
                        <div className='PostTextBlock'>
                            <div>
